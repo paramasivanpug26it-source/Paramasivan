@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Paramasivan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#e7efdc; --ink:#0d3b2a; --acc:#3d7a12; --bar:#0d3b2a; --barink:#e7efdc; --soft:rgba(13,59,42,.16);
+  --disp:'Big Shoulders Display','Arial Narrow',Impact,sans-serif;
+  --body:'Newsreader',Georgia,'Times New Roman',serif;
+  --ease:cubic-bezier(.2,.7,.2,1);
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--bg:#0d3b2a;--ink:#e7efdc;--acc:#c8e04a;--bar:#07241a;--barink:#e7efdc;--soft:rgba(231,239,220,.2)}
+}
+:root[data-theme="dark"]{--bg:#0d3b2a;--ink:#e7efdc;--acc:#c8e04a;--bar:#07241a;--barink:#e7efdc;--soft:rgba(231,239,220,.2)}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 40px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.125rem/1.65 var(--body);overflow-x:hidden}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--acc);outline-offset:3px}
+.bar{position:fixed;left:0;right:0;background:var(--bar);z-index:20;pointer-events:none}
+.bar.t{top:0;height:calc(env(safe-area-inset-top,0px) + 18px)}
+.bar.b{bottom:0;height:calc(env(safe-area-inset-bottom,0px) + 18px)}
+main{padding:calc(18px + 2.5rem) 1.25rem 6rem;max-width:68rem;margin:0 auto}
+h1,h2,h3{font-family:var(--disp);font-weight:900;line-height:.86;margin:0;text-transform:uppercase;letter-spacing:.005em}
+.cap{font-style:italic;font-size:1rem;opacity:.75;margin:0 0 .6rem}
+section{padding:5.5rem 0 1rem}
+h2{font-size:clamp(4rem,19vw,10rem)}
+.slot{outline:2px dashed var(--acc);outline-offset:4px;border-radius:2px}
+
+/* landing */
+.hero{min-height:calc(100svh - 80px);display:flex;flex-direction:column;justify-content:space-between;padding:1rem 0 2rem}
+.mono{align-self:flex-end;width:92px;height:92px;border:0;background:none;color:var(--ink);cursor:pointer;padding:0}
+.mono svg{width:100%;height:100%;display:block}
+h1{font-size:clamp(3.1rem,18.5vw,13.5rem);margin-top:3rem}
+h1 span{display:block;overflow:hidden;padding-top:.04em}
+h1 span b{display:block;font-weight:inherit}
+.tag{font-size:clamp(1.3rem,4.4vw,2rem);line-height:1.3;max-width:26ch;margin:1.6rem 0 .8rem}
+.now{margin:0 0 2rem;font-style:italic;opacity:.8}
+.now::before{content:"";display:inline-block;width:.55em;height:.55em;border-radius:50%;background:var(--acc);margin-right:.6em;vertical-align:.05em}
+.btns{display:flex;flex-wrap:wrap;gap:.9rem}
+.btn{font:900 1.35rem/1 var(--disp);text-transform:uppercase;letter-spacing:.05em;text-decoration:none;padding:.95rem 1.7rem;border:2px solid var(--ink);color:var(--ink);transition:background .25s var(--ease),color .25s var(--ease)}
+.btn.p{background:var(--ink);color:var(--bg)}
+.btn:hover{background:var(--acc);border-color:var(--acc);color:#0d3b2a}
+
+/* about */
+.about{display:grid;gap:1.5rem}
+.about p{margin:0 0 1.1rem;max-width:34rem}
+.about .big{font-size:clamp(1.5rem,5vw,2.3rem);line-height:1.25;max-width:22ch}
+@media(min-width:800px){.about{grid-template-columns:1fr 1.1fr;gap:4rem;margin-top:2rem}}
+
+/* skills as credits */
+.cred{list-style:none;margin:2.5rem 0 0;padding:0;max-width:40rem}
+.cred li{display:flex;align-items:baseline;gap:.6rem;padding:.5rem 0}
+.cred .n{font:800 1.5rem/1 var(--disp);text-transform:uppercase;letter-spacing:.04em}
+.cred .l{flex:1;border-bottom:2px dotted var(--soft);transform:translateY(-.25rem)}
+.cred em{font-size:1.1rem}
+.cred .grp{display:block;margin:1.6rem 0 .2rem;font-style:italic;opacity:.7}
+
+/* journey: film strip */
+.reel{margin:2.5rem 0 0;padding:0 0 0 3.4rem;position:relative;max-width:44rem}
+.reel::before{content:"";position:absolute;left:0;top:0;bottom:0;width:1.6rem;background:var(--ink);
+  -webkit-mask:radial-gradient(circle at 50% 50%,transparent 0 .32rem,#000 .34rem) 0 0/100% 1.6rem;mask:radial-gradient(circle at 50% 50%,transparent 0 .32rem,#000 .34rem) 0 0/100% 1.6rem}
+.scene{padding:0 0 2.6rem}
+.scene h3{font-size:clamp(2.2rem,8vw,3.4rem);margin-bottom:.5rem}
+.scene h3 small{font:italic 400 1rem/1 var(--body);text-transform:none;letter-spacing:0;margin-left:.6rem;opacity:.7}
+.scene p{margin:0 0 .6rem;max-width:32rem}
+
+/* flip cards */
+.hand{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2.5rem}
+.fcw{transform:rotate(var(--r,0deg));perspective:900px}
+.fcw:nth-child(1){--r:-2.5deg}.fcw:nth-child(2){--r:1.5deg;margin-top:1.6rem}.fcw:nth-child(3){--r:2deg}.fcw:nth-child(4){--r:-1.5deg;margin-top:1.6rem}
+.fc{all:unset;display:block;width:100%;aspect-ratio:3/4.2;cursor:pointer;position:relative;transform-style:preserve-3d;transition:transform .7s var(--ease)}
+.fc:focus-visible{outline:3px solid var(--acc);outline-offset:4px}
+.fc[aria-pressed="true"]{transform:rotateY(180deg)}
+.fc .f{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;flex-direction:column;justify-content:space-between;padding:.9rem;border:2px solid var(--ink)}
+.fc .front{background:var(--ink);color:var(--bg)}
+.fcw:nth-child(2) .front{background:var(--acc);color:#0d3b2a;border-color:#0d3b2a}
+.fcw:nth-child(3) .front{background:transparent;color:var(--ink)}
+.fc .back{transform:rotateY(180deg);background:var(--bg);color:var(--ink);border-width:5px;border-style:double}
+.fc .t{font:900 clamp(1.7rem,8vw,2.6rem)/.9 var(--disp);text-transform:uppercase}
+.fc .s{font-size:.95rem;font-style:italic}
+.fc .back .s{font-style:normal;font-size:1rem;line-height:1.35}
+@media(min-width:800px){.hand{grid-template-columns:repeat(4,1fr);gap:1.4rem}}
+
+/* contact */
+.mail{display:block;font:900 clamp(2.2rem,9.5vw,5.5rem)/.95 var(--disp);text-transform:uppercase;text-decoration:none;margin:2rem 0 1.5rem;word-break:break-word}
+.mail:hover{color:var(--acc)}
+.links{display:flex;gap:1.6rem;flex-wrap:wrap;font-size:1.25rem}
+.links a{text-decoration-thickness:2px;text-underline-offset:.25em}
+.links a:hover{color:var(--acc)}
+.end{margin-top:7rem;padding-top:1.5rem;border-top:2px solid var(--ink)}
+.end h2{font-size:clamp(3rem,13vw,7rem)}
+.end p{margin:1rem 0 0;font-style:italic;opacity:.75}
+
+/* opening: card shuffle */
+#open{position:fixed;inset:0;z-index:50;background:var(--bar);display:grid;place-items:center;clip-path:inset(0 0 0 0);transition:clip-path .5s var(--ease)}
+#open.out{clip-path:inset(0 0 100% 0)}
+#open.gone{display:none}
+#deck{position:relative;width:120px;height:170px}
+.k{position:absolute;inset:0;transform-style:preserve-3d;animation:riff .55s var(--ease) both;animation-delay:calc(var(--i)*.09s)}
+.k .fa{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border:2px solid #e7efdc;border-radius:6px;background:#0d3b2a}
+.k .bk{background:repeating-linear-gradient(45deg,transparent 0 7px,rgba(200,224,74,.35) 7px 8px),#0d3b2a;box-shadow:inset 0 0 0 6px #0d3b2a,inset 0 0 0 7px #c8e04a}
+.k .fr{transform:rotateY(180deg);display:grid;place-items:center;font:900 5.5rem/1 var(--disp);color:#c8e04a;background:#0d3b2a}
+.k.top{animation:riff .55s var(--ease) both,flip .55s var(--ease) 1.25s forwards;animation-delay:.63s,1.25s}
+@keyframes riff{0%{opacity:0;transform:translate(calc(var(--d)*130px),calc(var(--i)*-2px)) rotate(calc(var(--d)*14deg))}20%{opacity:1}100%{opacity:1;transform:translate(0,calc(var(--i)*-2px)) rotate(0)}}
+@keyframes flip{to{transform:translate(0,-14px) rotateY(180deg) scale(1.25)}}
+#skip{position:absolute;right:1.1rem;bottom:calc(env(safe-area-inset-bottom,0px) + 1.1rem);font:800 1.1rem/1 var(--disp);text-transform:uppercase;letter-spacing:.06em;color:#e7efdc;background:none;border:2px solid #e7efdc;padding:.6rem 1rem;cursor:pointer}
+#skip:hover{background:#c8e04a;color:#0d3b2a;border-color:#c8e04a}
+
+/* background clouds: flat cut-paper shapes, drifting slowly */
+main{position:relative;z-index:1}
+.sky{position:fixed;inset:0;overflow:hidden;z-index:0;pointer-events:none}
+.cloud{position:absolute;left:0;fill:var(--ink);opacity:.09;height:auto;animation:drift var(--s) linear var(--dl) infinite;will-change:transform}
+@keyframes drift{from{transform:translateX(-45vw)}to{transform:translateX(115vw)}}
+
+/* seasons */
+.toprow{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem}
+.toprow .mono{align-self:flex-start;flex:none}
+.seasons{display:flex;flex-wrap:wrap;gap:.35rem;max-width:calc(100% - 110px)}
+.seasons button{font:800 1rem/1 var(--disp);text-transform:uppercase;letter-spacing:.05em;color:var(--ink);background:none;border:2px solid var(--ink);padding:.45rem .6rem;cursor:pointer;transition:background .2s var(--ease),color .2s var(--ease)}
+.seasons button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.fall span{position:absolute;top:0;left:var(--l);width:var(--z);height:var(--z);background:var(--acc);opacity:.5;animation:fall var(--s) linear var(--dl) infinite;will-change:transform}
+[data-season=spring] .fall span{border-radius:100% 0 100% 0}
+[data-season=autumn] .fall span{border-radius:0 100% 0 100%;opacity:.55}
+[data-season=winter] .fall span{border-radius:50%;background:var(--ink);opacity:.22}
+@keyframes fall{from{transform:translate(0,-8vh) rotate(0)}50%{transform:translate(var(--sw),52vh) rotate(180deg)}to{transform:translate(0,110vh) rotate(360deg)}}
+.sun{display:none;position:absolute;top:calc(env(safe-area-inset-top,0px) + 50px);right:-70px;width:min(60vw,340px);aspect-ratio:1;border-radius:50%;background:repeating-conic-gradient(var(--acc) 0 6deg,transparent 6deg 15deg);opacity:.24;animation:spin 90s linear infinite}
+.sun::after{content:"";position:absolute;inset:26%;border-radius:50%;background:var(--acc)}
+[data-season=summer] .sun{display:block}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* hero reveal (one orchestrated moment) */
+.ready h1 span b{animation:rise .9s var(--ease) both}
+.ready h1 span:nth-child(2) b{animation-delay:.08s}
+@keyframes rise{from{transform:translateY(105%)}to{transform:none}}
+
+/* easter egg: countdown leader */
+#leader{position:fixed;inset:0;z-index:60;display:none;place-items:center;background:var(--bar);color:#c8e04a;font:900 min(60vw,22rem)/1 var(--disp)}
+#leader.on{display:grid}
+#leader::after{content:"";position:absolute;width:min(78vw,34rem);aspect-ratio:1;border:2px solid #c8e04a;border-radius:50%;opacity:.6}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .k,.k.top{animation:none}
+  .cloud{animation:none;transform:translateX(var(--x))}
+  .fall span{animation:none;transform:translateY(var(--y))}
+  .sun{animation:none}
+  .ready h1 span b{animation:none}
+  .fc{transition:none}
+  #open{transition:none}
+}
+</style>
+</head>
+<body>
+<div class="bar t"></div><div class="bar b"></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><symbol id="cl" viewBox="0 0 200 80"><circle cx="55" cy="48" r="22"/><circle cx="92" cy="34" r="30"/><circle cx="137" cy="45" r="25"/><circle cx="166" cy="56" r="17"/><rect x="38" y="52" width="146" height="22" rx="11"/></symbol></defs></svg>
+<div class="sky" aria-hidden="true">
+  <svg class="cloud" viewBox="0 0 200 80" style="top:9%;width:min(70vw,420px);--s:110s;--dl:-38s;--x:12vw"><use href="#cl"/></svg>
+  <svg class="cloud" viewBox="0 0 200 80" style="top:38%;width:min(46vw,260px);--s:85s;--dl:-70s;--x:62vw"><use href="#cl"/></svg>
+  <svg class="cloud" viewBox="0 0 200 80" style="top:66%;width:min(80vw,500px);--s:140s;--dl:-95s;--x:-5vw"><use href="#cl"/></svg>
+  <div class="sun"></div>
+  <div class="fall" id="fall"></div>
+</div>
+
+<div id="open" aria-hidden="true"><div id="deck"></div><button id="skip" type="button">Skip</button></div>
+<div id="leader" aria-hidden="true"></div>
+
+<main>
+  <header class="hero" id="top">
+    <div class="toprow">
+    <div class="seasons" role="group" aria-label="Background season">
+      <button type="button" data-s="spring" aria-pressed="false">Spring</button>
+      <button type="button" data-s="summer" aria-pressed="false">Summer</button>
+      <button type="button" data-s="autumn" aria-pressed="false">Autumn</button>
+      <button type="button" data-s="winter" aria-pressed="false">Winter</button>
+    </div>
+    <button class="mono" id="mono" type="button" aria-label="Monogram P">
+      <svg viewBox="0 0 92 92" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
+        <path d="M4 22V4h18M70 4h18v18M88 70v18H70M22 88H4V70"/>
+        <text x="46" y="68" text-anchor="middle" font-family="Big Shoulders Display,Impact,sans-serif" font-weight="900" font-size="68" fill="currentColor" stroke="none">P</text>
+      </svg>
+    </button>
+    </div>
+    <div>
+      <h1><span><b>Parama</b></span><span><b>sivan</b></span></h1>
+      <p class="tag slot">First-year IT student, learning to build things that work and look like someone cared.</p>
+      <p class="now slot">Currently: finding my feet in B.Tech Information Technology.</p>
+      <div class="btns"><a class="btn p" href="#about">Explore</a><a class="btn" href="#contact">Say hi</a></div>
+    </div>
+  </header>
+
+  <section id="about">
+    <p class="cap">Opening scene</p>
+    <h2>About</h2>
+    <div class="about">
+      <p class="big">I'm Paramasivan, and I'm at the very start of this story.</p>
+      <div>
+        <p>I'm a first-year B.Tech student in Information Technology. I'm still working out which corner of tech I want to spend years in, so for now I'm trying a bit of everything and keeping notes on what I enjoy.</p>
+        <p>This page is the first thing I've designed from nothing. I wanted it to feel like the opening credits of a film I'd actually sit through.</p>
+        <p class="slot">Add a paragraph in your own words: what pulled you towards tech, and who or what helped along the way.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <p class="cap">Cast and crew</p>
+    <h2>Skills</h2>
+    <ul class="cred">
+      <li class="slot"><span class="n">HTML and CSS</span><i class="l"></i><em>Comfortable</em></li>
+      <li class="slot"><span class="n">Python</span><i class="l"></i><em>Learning</em></li>
+      <li class="slot"><span class="n">C</span><i class="l"></i><em>Learning</em></li>
+      <li class="slot"><span class="n">Git and GitHub</span><i class="l"></i><em>Just starting</em></li>
+    </ul>
+  </section>
+
+  <section id="journey">
+    <p class="cap">The production</p>
+    <h2>Journey</h2>
+    <div class="reel">
+      <div class="scene"><h3>Released<small>what I've made</small></h3><p>This portfolio, designed and coded by hand.</p><p class="slot">Add a project or two, even small ones.</p></div>
+      <div class="scene"><h3>In production<small>what I'm learning</small></h3><p class="slot">Add what you're studying or practising right now.</p></div>
+      <div class="scene"><h3>Coming soon<small>what I want to build</small></h3><p class="slot">Add the thing you'd build if you had a free summer.</p></div>
+    </div>
+  </section>
+
+  <section id="beyond">
+    <p class="cap">Behind the scenes</p>
+    <h2>Beyond code</h2>
+    <p style="max-width:30rem;margin:1.2rem 0 0">Tap a card to turn it over.</p>
+    <div class="hand">
+      <div class="fcw"><button class="fc" type="button" aria-pressed="false"><span class="f front"><span class="t">Your first hobby</span><span class="s">Tap to flip</span></span><span class="f back"><span class="t">Fun fact</span><span class="s">Add a surprising detail about this hobby.</span></span></button></div>
+      <div class="fcw"><button class="fc" type="button" aria-pressed="false"><span class="f front"><span class="t">Your second hobby</span><span class="s">Tap to flip</span></span><span class="f back"><span class="t">Fun fact</span><span class="s">Add a surprising detail about this hobby.</span></span></button></div>
+      <div class="fcw"><button class="fc" type="button" aria-pressed="false"><span class="f front"><span class="t">Your third hobby</span><span class="s">Tap to flip</span></span><span class="f back"><span class="t">Fun fact</span><span class="s">Add a surprising detail about this hobby.</span></span></button></div>
+      <div class="fcw"><button class="fc" type="button" aria-pressed="false"><span class="f front"><span class="t">Something odd about me</span><span class="s">Tap to flip</span></span><span class="f back"><span class="t">The story</span><span class="s">Add the one fact friends always bring up.</span></span></button></div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <p class="cap">Get in touch</p>
+    <h2>Say hi</h2>
+    <a class="mail slot" href="mailto:you@example.com">you@example.com</a>
+    <div class="links"><a href="https://www.linkedin.com/in/your-name" rel="noopener">LinkedIn</a><a href="https://github.com/your-name" rel="noopener">GitHub</a></div>
+    <footer class="end"><h2>The end</h2><p>Written, directed and built by Paramasivan.</p></footer>
+  </section>
+</main>
+
+<script>
+(function(){
+  var open=document.getElementById('open'),deck=document.getElementById('deck'),root=document.documentElement;
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches,seen=false,t1,t2;
+  try{seen=sessionStorage.getItem('opened')==='1'}catch(e){}
+  function done(){
+    clearTimeout(t1);clearTimeout(t2);
+    try{sessionStorage.setItem('opened','1')}catch(e){}
+    open.classList.add('out');document.body.classList.add('ready');
+    setTimeout(function(){open.classList.add('gone')},reduce?0:520);
+  }
+  if(reduce||seen){open.classList.add('gone');document.body.classList.add('ready')}
+  else{
+    for(var i=0;i<8;i++){
+      var k=document.createElement('div');
+      k.className='k'+(i===7?' top':'');
+      k.style.setProperty('--i',i);k.style.setProperty('--d',i%2?1:-1);
+      k.innerHTML='<div class="fa bk"></div>'+(i===7?'<div class="fa fr">P</div>':'');
+      deck.appendChild(k);
+    }
+    t1=setTimeout(done,1900);
+    document.getElementById('skip').addEventListener('click',done);
+  }
+
+  document.querySelectorAll('.fc').forEach(function(b){
+    b.addEventListener('click',function(){b.setAttribute('aria-pressed',b.getAttribute('aria-pressed')==='true'?'false':'true')});
+  });
+
+  /* seasons */
+  var fall=document.getElementById('fall'),sb=document.querySelectorAll('.seasons button'),list=['spring','summer','autumn','winter'];
+  function setSeason(s){
+    document.documentElement.setAttribute('data-season',s);
+    sb.forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.s===s))});
+    fall.textContent='';
+    try{localStorage.setItem('season',s)}catch(e){}
+    if(s==='summer')return;
+    var sz=s==='winter'?[5,11]:s==='spring'?[10,16]:[16,26];
+    for(var i=0;i<18;i++){
+      var p=document.createElement('span'),st=p.style;
+      st.setProperty('--l',(Math.random()*100)+'%');
+      st.setProperty('--z',(sz[0]+Math.random()*(sz[1]-sz[0]))+'px');
+      st.setProperty('--s',(10+Math.random()*10)+'s');
+      st.setProperty('--dl',(-Math.random()*20)+'s');
+      st.setProperty('--sw',((Math.random()*2-1)*60)+'px');
+      st.setProperty('--y',(Math.random()*100)+'vh');
+      fall.appendChild(p);
+    }
+  }
+  var mo=new Date().getMonth(),def=mo>=2&&mo<=4?'spring':mo>=5&&mo<=7?'summer':mo>=8&&mo<=10?'autumn':'winter',saved=null;
+  try{saved=localStorage.getItem('season')}catch(e){}
+  sb.forEach(function(b){b.addEventListener('click',function(){setSeason(b.dataset.s)})});
+  setSeason(list.indexOf(saved)>-1?saved:def);
+
+  /* easter egg: five taps on the monogram roll the film leader */
+  var n=0,tm,leader=document.getElementById('leader');
+  document.getElementById('mono').addEventListener('click',function(){
+    n++;clearTimeout(tm);tm=setTimeout(function(){n=0},1500);
+    if(n<5)return;n=0;
+    var c=3;leader.textContent=c;leader.classList.add('on');
+    var iv=setInterval(function(){
+      c--;
+      if(c>0){leader.textContent=c}
+      else{clearInterval(iv);leader.textContent='Action';leader.style.fontSize='min(24vw,9rem)';
+        setTimeout(function(){leader.classList.remove('on');leader.style.fontSize=''},900)}
+    },650);
+  });
+})();
+</script>
+</body>
+</html>
